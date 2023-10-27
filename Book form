@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    /* CSS for styling the form */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    #book-form {
+      background: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      width: 400px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+    }
+
+    input[type="text"], input[type="number"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+
+    .error-message {
+      color: red;
+    }
+
+    input[type="submit"] {
+      background: #007BFF;
+      color: #fff;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+      background: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <form id="book-form" action="#" onsubmit="return validateForm()">
+    <div class="form-group">
+      <label for="srNo">Sr. No:</label>
+      <input type="number" id="srNo" name="srNo" required>
+    </div>
+
+    <div class="form-group">
+      <label for="title">Title of the Book:</label>
+      <input type="text" id="title" name="title" required>
+    </div>
+
+    <div class="form-group">
+      <label for="author">Author:</label>
+      <input type="text" id="author" name="author" required>
+    </div>
+
+    <div class="form-group">
+      <label for="price">Price:</label>
+      <input type="number" id="price" name="price" required>
+    </div>
+
+    <div class="form-group">
+      <label for="quantity">Quantity:</label>
+      <input type="number" id="quantity" name="quantity" required>
+    </div>
+
+    <input type="submit" value="Submit">
+  </form>
+
+  <script>
+    function validateForm() {
+      var srNo = document.getElementById("srNo").value;
+      var title = document.getElementById("title").value;
+      var author = document.getElementById("author").value;
+      var price = document.getElementById("price").value;
+      var quantity = document.getElementById("quantity").value;
+      var errorMessages = [];
+
+      if (isNaN(srNo)) {
+        errorMessages.push("Sr. No must be a number.");
+      }
+
+      if (title.trim() === "") {
+        errorMessages.push("Title of the book is required.");
+      }
+
+      if (author.trim() === "") {
+        errorMessages.push("Author is required.");
+      }
+
+      if (isNaN(price)) {
+        errorMessages.push("Price must be a number.");
+      }
+
+      if (isNaN(quantity)) {
+        errorMessages.push("Quantity must be a number.");
+      }
+
+      if (errorMessages.length > 0) {
+        alert("Validation Error:\n" + errorMessages.join("\n"));
+        return false;
+      }
+
+      return true;
+    }
+  </script>
+</body>
+</html>
