@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        #container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        h1 {
+            text-align: center;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        input[type="text"] {
+            width: 70%;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1>List of Departments</h1>
+        <ul id="department-list">
+            <li>1. Computer</li>
+            <li>2. Mech</li>
+            <li>3. Civil</li>
+        </ul>
+        <form id="add-department-form">
+            <label for="new-department">Add a Department: </label>
+            <input type="text" id="new-department" placeholder="Enter department name">
+            <button type="submit">Add</button>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const departmentList = document.getElementById("department-list");
+            const addDepartmentForm = document.getElementById("add-department-form");
+            const newDepartmentInput = document.getElementById("new-department");
+
+            addDepartmentForm.addEventListener("submit", function(e) {
+                e.preventDefault();
+                const departmentName = newDepartmentInput.value.trim();
+                if (departmentName) {
+                    // Check if the department name is unique before adding
+                    const departmentNames = Array.from(departmentList.getElementsByTagName("li")).map(item => item.textContent.split('. ')[1]);
+                    if (!departmentNames.includes(departmentName)) {
+                        const newDepartmentItem = document.createElement("li");
+                        newDepartmentItem.textContent = `${departmentList.childElementCount + 1}. ${departmentName}`;
+                        departmentList.appendChild(newDepartmentItem);
+                        newDepartmentInput.value = "";
+                    } else {
+                        alert("Department name already exists.");
+                    }
+                } else {
+                    alert("Please enter a valid department name.");
+                }
+            });
+        });
+    </script>
+</body>
+</html>
