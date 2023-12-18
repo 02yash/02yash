@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="Mymodule">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+    <script src="myJs.js"></script>
+    <script src="myMin.js"></script>
+    <style>
+h1{
+    text-align: center;
+    font-size: 24px;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    color: orange;
+
+}    
+        
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 40px;
+    margin-top: 50px;
+}
+
+th {
+    background-color: rgb(61, 194, 150);
+    text-align: center;
+    padding: 10px;
+    border: 4px solid rgba(245, 245, 245, 0.993);
+}
+
+
+tr {
+    background-color:aliceblue;
+   
+}
+
+
+tr:nth-child(even) {
+    background-color: antiquewhite;
+}
+
+
+td {
+    padding: 10px;
+    border: 4px solid rgba(245, 245, 245, 0.993);
+    text-align: center;
+}
+
+
+tr:hover {
+    background-color: lightblue;
+}
+
+
+input[type="button"] {
+    background-color: #4CAF50; 
+    color: #fff; 
+    padding: 10px 20px; 
+    border: none; 
+    border-radius: 4px; 
+    cursor: pointer; 
+    font-size: 16px; 
+    
+}
+
+
+input[type="button"]:hover {
+    background-color: #45a049; 
+}
+
+
+
+    </style>
+</head>
+<body ng-controller="Mycontroller">
+
+    <div>
+    <h1>To-Do LIST</h1>
+    <table>
+        <tr>
+            <th>TaskId</th>
+            <th>TaskName</th>
+        </tr>
+        <tr ng-repeat="obj in task">
+            <td ng-repeat="(key,value) in obj">{{value}}</td>
+             <td><input type="button" value="Delete" ng-click="Delete(obj.TaskNo)"></td>
+             <td><input type="button" value="Update" ng-click="Update(obj.TaskNo)"></td>
+        </tr>
+        
+    </table>
+   
+    Enter Task Id:
+    <input type="text" ng-model="num">
+    Enter Task Name:
+    <input type="text" ng-model="name">
+    <input type="button" value="Add" ng-click="add()">
+    </div>
+</body>
+</html>
